@@ -45,8 +45,7 @@ def forward_propogation(X,Y,w,b):
 def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost):   
     w = copy.deepcopy(w)
     b = copy.deepcopy(b)  
-    costs=[]
-    
+    costs=[]  
     for i in range(num_iterations):        
         grads,cost=forward_propogation(X,Y,w,b)
         
@@ -64,11 +63,9 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost):
                 print ("Cost after iteration %i: %f" %(i, cost))
             
     prams={"w":w,
-               "b":b}
-        
+               "b":b}    
     grads={"dw":dw,
-              "db":db}
-        
+              "db":db}    
     return prams,grads,costs    
 
 
@@ -76,7 +73,6 @@ def predict(X,w,b):
     m=X.shape[1]
     Y_prediction = np.zeros((1, m))
     w = w.reshape(X.shape[0], 1)
-    
     z=np.dot(w.T,X)+b
     a=sigmoid(z)
     
@@ -85,22 +81,19 @@ def predict(X,w,b):
             Y_prediction[0,i]=1
          
         else:
-            Y_prediction[0,i]=0
-            
+            Y_prediction[0,i]=0      
     return Y_prediction
 
 
- def model_train(X_train, Y_train, X_test, Y_test, num_iterations, learning_rate,print_cost):
-    
+ def model_train(X_train, Y_train, X_test, Y_test, num_iterations, learning_rate,print_cost): 
+        
     w,b=initialize_with_zeros(X_train.shape[0])
-    
     prams,grads,costs=optimize(w, b, X_train, Y_train, num_iterations, learning_rate,print_cost)
     
     w = prams["w"]
     b = prams["b"]
     
     Y_prediction_train= predict(X_train,w,b)
-      
     # Print train/test Errors
     if print_cost:
         print("train accuracy: {} %".format(100 - np.mean(np.abs(Y_prediction_train - Y_train)) * 100))
