@@ -9,7 +9,7 @@
 
 
 <p>
-Simple binary image classifier, the purpose of classification is either be a yes/no decision so-called binary classification where a given item is predicted as class 0 or class 1, or several classes referring to multi-class classification.
+Simple binary image classifier is a Machine-Learning approch with the purpose of classification is either be a yes/no decision so-called binary classification where a given item is predicted as class 0 or class 1, or several classes referring to multi-class classification.
 </p>
 
 ### Steps performed
