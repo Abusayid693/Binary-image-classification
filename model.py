@@ -23,13 +23,11 @@ def forward_propogation(X,Y,w,b):
     
     # Predictive model calculation
     z=np.dot(w.T,X)+b
-    a=sigmoid(z)
-    
+    a=sigmoid(z) 
     # Backpropogation
     dz=a-Y 
     dw=(1/m)*np.dot(X,dz.T)
-    db=(1/m)*np.sum(dz)
-    
+    db=(1/m)*np.sum(dz) 
     temp_1 = np.log(a)
     temp_2 = np.log(1-a)
     
@@ -38,24 +36,18 @@ def forward_propogation(X,Y,w,b):
     cost=(1/m)*cost
     
     cost = np.squeeze(np.array(cost))
-
-    
     grads = {"dw": dw,
              "db": db}
     
     return grads, cost
     
 
-
-
 def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost):   
     w = copy.deepcopy(w)
-    b = copy.deepcopy(b)
-    
+    b = copy.deepcopy(b)  
     costs=[]
     
-    for i in range(num_iterations):
-        
+    for i in range(num_iterations):        
         grads,cost=forward_propogation(X,Y,w,b)
         
         dw = grads["dw"]
@@ -79,8 +71,8 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost):
         
     return prams,grads,costs    
 
-def predict(X,w,b):
-    
+
+def predict(X,w,b):  
     m=X.shape[1]
     Y_prediction = np.zeros((1, m))
     w = w.reshape(X.shape[0], 1)
@@ -95,8 +87,8 @@ def predict(X,w,b):
         else:
             Y_prediction[0,i]=0
             
-
     return Y_prediction
+
 
  def model_train(X_train, Y_train, X_test, Y_test, num_iterations, learning_rate,print_cost):
     
@@ -108,8 +100,7 @@ def predict(X,w,b):
     b = prams["b"]
     
     Y_prediction_train= predict(X_train,w,b)
-    
-    
+      
     # Print train/test Errors
     if print_cost:
         print("train accuracy: {} %".format(100 - np.mean(np.abs(Y_prediction_train - Y_train)) * 100))
@@ -122,9 +113,6 @@ def predict(X,w,b):
          "num_iterations": num_iterations}    
     return d   
 
-
  logistic_regression_model = model(X, Y, [], [], 2000, 0.005, True)   
-
-
 costs=logistic_regression_model["costs"]
 plt.plot(costs)
