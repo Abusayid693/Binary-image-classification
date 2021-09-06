@@ -1,5 +1,5 @@
 
-def initialize_with_zeros(v):
+def parameter_initialization(v):
     
     """
     The function initialises parameters for model training
